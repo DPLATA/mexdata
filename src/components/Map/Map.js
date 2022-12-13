@@ -25,7 +25,7 @@ export const Map = () => {
     const [onselect, setOnselect] = useState({});
     /* function determining what should happen onmouseover, this function updates our state*/
     const highlightFeature = (e=> {
-        var layer = e.target;
+        let layer = e.target;
         const { state_key, unemployment_percentage } = e.target.feature.properties;
         setOnselect({
             estado:state_key,
