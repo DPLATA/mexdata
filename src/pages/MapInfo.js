@@ -1,4 +1,3 @@
-import './MapInfo.css'
 import Map from "../components/Map/Map";
 import Legend from "../components/Legend/Legend";
 
