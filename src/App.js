@@ -1,12 +1,19 @@
-import './App.css';
-import Map from './components/Map/Map'
-import Legend from './components/Legend/Legend'
+import './App.css'
+import MapInfo from './pages/MapInfo'
+import Home from './pages/Home'
+import LMBStats from './pages/LMBStats'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <Map/>
-      <Legend/>
+        <Router>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/map' element={<MapInfo />} />
+                <Route path='/lmbstats' element={<LMBStats />} />
+            </Routes>
+        </Router>
     </div>
   );
 }
