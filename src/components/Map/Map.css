@@ -1,4 +1,4 @@
-.header{
+.customheader{
 
     background-color: #39AD78;
     padding-bottom: 10px;
@@ -9,7 +9,7 @@
     color:white;
 
 }
-.heading{
+.customheading{
   padding-left:2%;
 }
 .text-muted{
@@ -76,11 +76,11 @@
   font-size:8px;
 
 }
-.heading{
+.customheading{
   padding:none;
 
 }
-.heading h2{
+.customheading h2{
   font-size:20px;
 }
 .text-muted{

@@ -78,9 +78,9 @@ export const Map = () => {
     });
 
     return(
-         <div className='container'>
-            <div className="header">
-            <h2 className='heading'>Porcentaje de desempleo en México por estado INEGI 2022</h2>
+         <div className='customcontainer'>
+            <div className="customheader">
+            <h2 className='customheading'>Porcentaje de desempleo en México por estado INEGI 2022</h2>
             </div>
             <div className="">
                 <div className="">
