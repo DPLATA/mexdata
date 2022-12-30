@@ -3,7 +3,10 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "state_key": "YUC",
+        "unemployment_percentage": 2.0484404
+      },
       "geometry": {
         "coordinates": [
           [
