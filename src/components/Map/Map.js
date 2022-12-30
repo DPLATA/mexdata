@@ -51,15 +51,15 @@ export const Map = () => {
         });
     }
     const mapPolygonColorToUnemploymentPercentage=(density => {
-        return density > 5
+        return density > 4.5
             ? '#a50f15'
-            : density > 4
+            : density > 3.6
             ? '#de2d26'
-            : density > 3
+            : density > 2.7
             ? '#fb6a4a'
-            : density > 2
+            : density > 1.8
             ? '#fc9272'
-            : density > 1
+            : density > 0.9
             ? '#fcbba1'
             : '#fee5d9';
     })
