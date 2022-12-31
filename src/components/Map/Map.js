@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { MapContainer, TileLayer, GeoJSON} from 'react-leaflet';
-import mx_states from '../../assets/mx_states.json'
+import React, { useState } from 'react'
+import { MapContainer, TileLayer, GeoJSON} from 'react-leaflet'
+import mx_states_1 from '../../assets/mx_states.json'
+import mx_states_2 from '../../assets/mx_states_pt2.json'
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 
@@ -73,6 +74,10 @@ export const Map = () => {
             fillOpacity: 0.5
         });
     });
+    const mx_states = {
+        "type": "featureCollection",
+        "features": [...mx_states_1.features, ...mx_states_2.features]
+    }
       const feature = mx_states.features.map(feature=>{
         return(feature);
     });
@@ -80,6 +85,7 @@ export const Map = () => {
     return(
          <div className='customcontainer'>
             <div className="customheader">
+                {/*Cambiar a mapa politico que partido gobierna que entidad después incluir estadítica*/}
             <h2 className='customheading title has-text-white'>Porcentaje de desempleo en México por estado INEGI 2022</h2>
             </div>
             <div className="">
