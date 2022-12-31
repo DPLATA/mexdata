@@ -80,7 +80,7 @@ export const Map = () => {
     return(
          <div className='customcontainer'>
             <div className="customheader">
-            <h2 className='customheading'>Porcentaje de desempleo en México por estado INEGI 2022</h2>
+            <h2 className='customheading title has-text-white'>Porcentaje de desempleo en México por estado INEGI 2022</h2>
             </div>
             <div className="">
                 <div className="">
