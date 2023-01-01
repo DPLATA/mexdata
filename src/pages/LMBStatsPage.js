@@ -22,7 +22,7 @@ function LMBStatsPage() {
                                          lineDataKey='RBI' strokeHexColor='#8884d8'/>
                         <CustomLineChart width={600} height={300} data={lmb_stats} name='carreras'
                                          xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
-                                         lineDataKey='R' strokeHexColor='#8884d8'/>
+                                         lineDataKey='R' strokeHexColor='#658354'/>
                     </div>
                 </div>
             </section>
