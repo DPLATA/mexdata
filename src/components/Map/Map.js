@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { MapContainer, TileLayer, GeoJSON} from 'react-leaflet'
-import mx_states_1 from '../../assets/mx_states.json'
-import mx_states_2 from '../../assets/mx_states_pt2.json'
-import mx_states_3 from '../../assets/mx_states_pt3.json'
+import mx_states_1 from '../../assets/mx-states/mx_states.json'
+import mx_states_2 from '../../assets/mx-states/mx_states_2.json'
+import mx_states_3 from '../../assets/mx-states/mx_states_3.json'
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 

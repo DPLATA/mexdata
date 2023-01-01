@@ -1,5 +1,5 @@
-# fuente: https://www.inegi.org.mx/app/tabulados/default.html?nc=624 tercer trimestre 2022
-State,Unemployment
+# fuente: https://www.inegi.org.mx/app/tabulados/default.html?nc=624 tercer trimestre 2022 - Unemployment
+State,Unemployment,PoliticalPartyInPower
 MX-AGU,4.03922817
 MX-BCN,2.59254362
 MX-BCS,2.86790431
@@ -27,8 +27,8 @@ MX-SLP,3.37770619
 MX-SIN,3.33011344
 MX-SON,3.81533691
 MX-TAB,5.2553575
-MX-TMS,3.66340975
-MX-TLX,3.77758131
+MX-TAM,3.66340975
+MX-TLA,3.77758131
 MX-VER,3.06521808
 MX-YUC,2.0484404
 MX-ZAC,2.74256441
