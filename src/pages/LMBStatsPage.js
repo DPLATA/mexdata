@@ -10,13 +10,19 @@ function LMBStatsPage() {
             </section>
             <section className="section">
                 <div className="container">
-                    <div className="columns">
+                    <div className="columns is-multiline">
                         <CustomLineChart width={600} height={300} data={lmb_stats} name='home runs'
                                          xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
                                          lineDataKey='HR' strokeHexColor='#8884d8'/>
                         <CustomLineChart width={600} height={300} data={lmb_stats} name='porcentaje de bateo'
                                          xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
                                          lineDataKey='AVG' strokeHexColor='#8884d8'/>
+                        <CustomLineChart width={600} height={300} data={lmb_stats} name='carreras impulsadas'
+                                         xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
+                                         lineDataKey='RBI' strokeHexColor='#8884d8'/>
+                        <CustomLineChart width={600} height={300} data={lmb_stats} name='carreras'
+                                         xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
+                                         lineDataKey='R' strokeHexColor='#8884d8'/>
                     </div>
                 </div>
             </section>
