@@ -25,7 +25,7 @@ function LMBStatsPage() {
         }
         getData()
         console.log(data)
-    }, [])
+    }, [data])
 
     return (
         <>
