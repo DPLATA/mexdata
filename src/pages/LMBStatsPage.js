@@ -1,5 +1,4 @@
 import CustomLineChart from '../components/Charts/LineChart/CustomLineChart'
-// import lmb_stats from '../assets/top_25_at_bat_LMB.json'
 import { useState, useEffect } from "react"
 
 
