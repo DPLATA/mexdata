@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { MapContainer, TileLayer, GeoJSON} from 'react-leaflet'
 import mx_states_1 from '../../assets/mx-states/mx_states.json'
 import mx_states_2 from '../../assets/mx-states/mx_states_2.json'
@@ -8,6 +8,29 @@ import './Map.css';
 
 
 export const Map = () => {
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                let response = await fetch('https://mexdata-api.onrender.com/mex_map/features')
+                let actualData = await response.json()
+                // console.log(actualData.data)
+                setData(actualData.data)
+                setError(null)
+            }catch (error){
+                // console.log(error.message)
+                setError(error.message)
+                setData(null)
+            }finally{
+                setLoading(false)
+            }
+        }
+        getData()
+    }, [data])
+
     const mapContainerStyle = {
         height: '75vh',
         width: '85%',
@@ -75,11 +98,12 @@ export const Map = () => {
             fillOpacity: 0.5
         });
     });
+
     const mx_states = {
         "type": "featureCollection",
         "features": [...mx_states_1.features, ...mx_states_2.features, ...mx_states_3.features]
     }
-      const feature = mx_states.features.map(feature=>{
+    const feature = mx_states.features.map(feature=>{
         return(feature);
     });
 
