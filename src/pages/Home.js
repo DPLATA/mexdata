@@ -6,7 +6,7 @@ export const Home = () => {
     <>
         <Link className="link" to='/lmbstats'>Estadísticas LMB</Link>
         <Link className="link" to='/map'>Mapa con información del INEGI</Link>
-        <a className="link" href="https://medium.com/moneyball-en-español" target="_blank">Moneyball en español</a>
+        <a className="link" href="https://medium.com/moneyball-en-español" target="_blank" rel="noreferrer">Moneyball en español</a>
         {/*deportes - triatlon - fba*/}
     </>
   )

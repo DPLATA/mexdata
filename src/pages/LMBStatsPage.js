@@ -1,5 +1,5 @@
 import CustomLineChart from '../components/Charts/LineChart/CustomLineChart'
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 
 
 function LMBStatsPage() {
@@ -12,11 +12,9 @@ function LMBStatsPage() {
             try {
                 let response = await fetch('https://mexdata-api.onrender.com/lmb/players_hitting')
                 let actualData = await response.json()
-                // console.log(actualData.data)
                 setData(actualData.data)
                 setError(null)
             }catch (error){
-                // console.log(error.message)
                 setError(error.message)
                 setData(null)
             }finally{
@@ -24,8 +22,7 @@ function LMBStatsPage() {
             }
         }
         getData()
-        console.log(data)
-    }, [data])
+    }, [data, error, loading])
 
     return (
         <>
@@ -34,6 +31,8 @@ function LMBStatsPage() {
             </section>
             <section className="section">
                 <div className="container">
+                   {
+                   (loading && <p>Loading</p>) ||
                     <div className="columns is-multiline">
                         <CustomLineChart width={600} height={300} data={data} name='home runs'
                                          xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
@@ -48,6 +47,7 @@ function LMBStatsPage() {
                                          xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
                                          lineDataKey='R' strokeHexColor='#658354'/>
                     </div>
+                   }
                 </div>
             </section>
         </>
