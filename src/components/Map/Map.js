@@ -1,35 +1,32 @@
 import React, {useEffect, useState} from 'react'
 import { MapContainer, TileLayer, GeoJSON} from 'react-leaflet'
-import mx_states_1 from '../../assets/mx-states/mx_states.json'
-import mx_states_2 from '../../assets/mx-states/mx_states_2.json'
-import mx_states_3 from '../../assets/mx-states/mx_states_3.json'
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 
 
 export const Map = () => {
-    const [data, setData] = useState(null);
+    const [mx_states, setMx_states] = useState({
+        "type": "featureCollection",
+        "features": []
+    })
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const getData = async () => {
             try {
-                let response = await fetch('https://mexdata-api.onrender.com/mex_map/features')
+                let response = await fetch('https://mexdata-api.onrender.com/mex_map/feature_collections')
                 let actualData = await response.json()
-                // console.log(actualData.data)
-                setData(actualData.data)
+                setMx_states({...mx_states, features: actualData.data})
                 setError(null)
             }catch (error){
-                // console.log(error.message)
                 setError(error.message)
-                setData(null)
             }finally{
                 setLoading(false)
             }
         }
         getData()
-    }, [data])
+    }, [mx_states, error, loading])
 
     const mapContainerStyle = {
         height: '75vh',
@@ -99,25 +96,24 @@ export const Map = () => {
         });
     });
 
-    const mx_states = {
-        "type": "featureCollection",
-        "features": [...mx_states_1.features, ...mx_states_2.features, ...mx_states_3.features]
-    }
-    const feature = mx_states.features.map(feature=>{
+    let feature = mx_states.features.map(feature=>{
         return(feature);
     });
 
     return(
+
          <div className='customcontainer'>
             <div className="customheader">
                 {/*Cambiar a mapa politico que partido gobierna que entidad después incluir estadítica*/}
             <h2 className='customheading title has-text-white'>Porcentaje de desempleo en México por estado INEGI 2022</h2>
             </div>
-            <div className="">
+                 {
+                     (loading && <p>Loading</p>) ||
+                    <div className="">
                 <div className="">
                     {!onselect.estado && (
                     <div className="census-info-hover">
-                        <p>Hover on each county for more details</p>
+                        <p>Pon el puntero sobre el estado del que quieres más información</p>
                     </div>)}
                     {onselect.estado && (
                         <ul className="census-info">
@@ -135,7 +131,8 @@ export const Map = () => {
                 </MapContainer>
                 </div>
             </div>
-        </div>
+                 }
+         </div>
 
     )
 }
