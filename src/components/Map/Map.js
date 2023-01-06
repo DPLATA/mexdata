@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { MapContainer, TileLayer, GeoJSON} from 'react-leaflet'
+import {MapContainer, TileLayer, GeoJSON} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 
@@ -19,9 +19,9 @@ export const Map = () => {
                 let actualData = await response.json()
                 setMx_states({...mx_states, features: actualData.data})
                 setError(null)
-            }catch (error){
+            } catch (error) {
                 setError(error.message)
-            }finally{
+            } finally {
                 setLoading(false)
             }
         }
@@ -46,12 +46,12 @@ export const Map = () => {
 
     const [onselect, setOnselect] = useState({});
     /* function determining what should happen onmouseover, this function updates our state*/
-    const highlightFeature = (e=> {
+    const highlightFeature = (e => {
         let layer = e.target;
-        const { state_key, unemployment_percentage } = e.target.feature.properties;
+        const {state_key, unemployment_percentage} = e.target.feature.properties;
         setOnselect({
-            estado:state_key,
-            porcentajeDeDesempleo:unemployment_percentage
+            estado: state_key,
+            porcentajeDeDesempleo: unemployment_percentage
         });
         layer.setStyle({
             weight: 1,
@@ -60,30 +60,30 @@ export const Map = () => {
         });
     });
     /*resets our state i.e no properties should be displayed when a feature is not clicked or hovered over */
-    const resetHighlight= (e =>{
+    const resetHighlight = (e => {
         setOnselect({});
         e.target.setStyle(style(e.target.feature));
     })
     /* this function is called when a feature in the map is hovered over or when a mouse moves out of it, the function calls two functions
      highlightFeature and resetHighlight*/
-    const onEachFeature= (feature, layer)=> {
+    const onEachFeature = (feature, layer) => {
         layer.on({
             mouseover: highlightFeature,
             mouseout: resetHighlight,
         });
     }
-    const mapPolygonColorToUnemploymentPercentage=(density => {
+    const mapPolygonColorToUnemploymentPercentage = (density => {
         return density > 4.5
             ? '#a50f15'
             : density > 3.6
-            ? '#de2d26'
-            : density > 2.7
-            ? '#fb6a4a'
-            : density > 1.8
-            ? '#fc9272'
-            : density > 0.9
-            ? '#fcbba1'
-            : '#fee5d9';
+                ? '#de2d26'
+                : density > 2.7
+                    ? '#fb6a4a'
+                    : density > 1.8
+                        ? '#fc9272'
+                        : density > 0.9
+                            ? '#fcbba1'
+                            : '#fee5d9';
     })
     const style = (feature => {
         return ({
@@ -96,43 +96,48 @@ export const Map = () => {
         });
     });
 
-    let feature = mx_states.features.map(feature=>{
-        return(feature);
+    let feature = mx_states.features.map(feature => {
+        return (feature);
     });
 
-    return(
+    return (
 
-         <div className='customcontainer'>
+        <div className='customcontainer'>
             <div className="customheader">
-                {/*Cambiar a mapa politico que partido gobierna que entidad después incluir estadítica*/}
-            <h2 className='customheading title has-text-white'>Porcentaje de desempleo en México por estado INEGI 2022</h2>
+                {/*incluir mapa politico que partido gobierna que entidad después incluir estadítica*/}
+                <h2 className='customheading title has-text-white'>Tasa de desocupación total trimestral según entidad federativa</h2>
             </div>
-                 {
-                     (loading && <p>Loading</p>) ||
-                    <div className="">
+            {
+                (loading && <p>Loading</p>) ||
                 <div className="">
-                    {!onselect.estado && (
-                    <div className="census-info-hover">
-                        <p>Pon el puntero sobre el estado del que quieres más información</p>
-                    </div>)}
-                    {onselect.estado && (
-                        <ul className="census-info">
-                            <li><strong>{onselect.estado}</strong></li><br/>
-                            <li>Porcentaje de desempleo: {onselect.porcentajeDeDesempleo}</li>
-                        </ul>
-                    )}
-                <MapContainer center={cdmx_coords}
-                zoom={7} scrollWheelZoom={true} style={mapContainerStyle}>
-                    <TileLayer
-                        attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
-                        url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
-                    />
-                    <GeoJSON data={feature} style={style} onEachFeature={onEachFeature}/>
-                </MapContainer>
+                    <div className="">
+                        {!onselect.estado && (
+                            <div className="census-info-hover">
+                                <p>Pon el puntero sobre el estado del que quieres más información</p>
+                            </div>)
+                        }
+                        {
+                            onselect.estado && (
+                                <ul className="census-info">
+                                    <li><strong>{onselect.estado}</strong></li>
+                                    <br/>
+                                    <li>Porcentaje de desempleo: {onselect.porcentajeDeDesempleo}%</li>
+                                </ul>
+                            )
+                        }
+                        <MapContainer center={cdmx_coords} zoom={7} scrollWheelZoom={true} style={mapContainerStyle}>
+                            <TileLayer
+                                attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
+                                url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
+                            <GeoJSON data={feature} style={style} onEachFeature={onEachFeature}/>
+                        </MapContainer>
+                    </div>
                 </div>
-            </div>
-                 }
-         </div>
+            }
+                <div className="customfooter">
+                    <p className='customheading has-text-white'><a href="https://www.inegi.org.mx/app/tabulados/default.html?nc=624" target="_blank" rel="noreferrer">Fuente: INEGI. Encuesta Nacional de Ocupación y Empleo (ENOE) - información del tercer trimestre 2022</a></p>
+                </div>
+        </div>
 
     )
 }
