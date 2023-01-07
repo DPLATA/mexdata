@@ -4,6 +4,8 @@ import React, {useState, useEffect} from "react"
 
 function LMBStatsPage() {
 
+    let [addrtype, setAddrType] = useState('AB')
+
     let [max, setMax] = useState({
         "team": "",
         "league": "",
@@ -74,7 +76,30 @@ function LMBStatsPage() {
                 let actualData = await response.json()
                 setData(actualData.data)
 
-                const getTopX = (arr, prop) => {
+
+
+                let topObj = getTopX(actualData.data, addrtype)
+                setMax(topObj)
+
+
+                let bottom = getBottomX(actualData.data, addrtype)
+                setMin(bottom)
+
+
+
+                let average = getAverageX(actualData.data, addrtype)
+                setAvg(average)
+            } catch (error) {
+                setData(null)
+                console.log(error.message)
+            } finally {
+                setLoading(false)
+            }
+        }
+        getData()
+    }, [])
+
+    const getTopX = (arr, prop) => {
                     let top = {
                         "team": "",
                         "league": "",
@@ -103,8 +128,13 @@ function LMBStatsPage() {
                     return top
                 }
 
-                let topObj = getTopX(actualData.data, 'AB')
-                setMax(topObj)
+                const getAverageX = (arr, prop) => {
+                    let total = 0
+                    arr.forEach((element) => {
+                        total += element[prop]
+                    })
+                    return total / arr.length
+                }
 
                 const getBottomX = (arr, prop) => {
                     let bottomObj = {
@@ -134,34 +164,49 @@ function LMBStatsPage() {
                     })
                     return bottomObj
                 }
-                let bottom = getBottomX(actualData.data, 'AB')
+
+
+    const handleAddrTypeChange = (e) => {
+        setAddrType(e.target.value);
+
+       let topObj = getTopX(data, e.target.value)
+        setMax(topObj)
+
+        let bottom = getBottomX(data, e.target.value)
                 setMin(bottom)
 
 
-                const getAverageX = (arr, prop) => {
-                    let total = 0
-                    arr.forEach((element) => {
-                        total += element[prop]
-                    })
-                    return total / arr.length
-                }
-                let average = getAverageX(actualData.data, 'AB')
-                setAvg(average)
-            } catch (error) {
-                setData(null)
-                console.log(error.message)
-            } finally {
-                setLoading(false)
-            }
-        }
-        getData()
-    }, [])
 
+                let average = getAverageX(data, e.target.value)
+                setAvg(average)
+
+        console.log(addrtype)
+    }
 
     return (
         <>
             <section className="section">
                 <h1 className="title column is-full"> Estadísticas de bateo por equipo MLB 2022 </h1>
+                <div className="select is-rounded">
+                    <select defaultValue={addrtype} onChange={handleAddrTypeChange}>
+                        <option defaultValue value="AB">AB</option>
+                        {/*implementar mappeo r:carreras, h:hits y asi sucesivamente y revisar animacion de la grafica*/}
+                        <option value="R">R</option>
+                        <option value="H">H</option>
+                        <option value="2B">2B</option>
+                        <option value="3B">3B</option>
+                        <option value="HR">HR</option>
+                        <option value="RBI">RBI</option>
+                        <option value="BB">BB</option>
+                        <option value="SO">SO</option>
+                        <option value="SB">SB</option>
+                        <option value="CS">CS</option>
+                        <option value="AVG">AVG</option>
+                        <option value="OBP">OBP</option>
+                        <option value="SLG">SLG</option>
+                        <option value="OPS">OPS</option>
+                    </select>
+                </div>
             </section>
             <section className="section is-main-section">
                 <div className="tile is-ancestor">
@@ -170,12 +215,12 @@ function LMBStatsPage() {
                             <div className="card-content">
                                 <div className="level is-mobile">
                                     <div className="level-item">
-                                        <div className="is-widget-label"><h3 className="subtitle is-spaced">
+                                        <div className="is-widget-label"><p className="subtitle is-spaced">
                                             Máximo
-                                        </h3>
-                                            <h1 className="title">
-                                                {(loading && <p> loading </p>) || max.AB}
-                                            </h1>
+                                        </p>
+                                            <p className="title has-text-success-dark">
+                                                {(loading && <p> loading </p>) ||  <p> {max[addrtype]} {max.team} </p>}
+                                            </p>
                                         </div>
                                     </div>
                                     <div className="level-item has-widget-icon">
@@ -193,12 +238,12 @@ function LMBStatsPage() {
                             <div className="card-content">
                                 <div className="level is-mobile">
                                     <div className="level-item">
-                                        <div className="is-widget-label"><h3 className="subtitle is-spaced">
+                                        <div className="is-widget-label"><p className="subtitle is-spaced">
                                             Promedio
-                                        </h3>
-                                            <h1 className="title">
-                                                {(loading && <p> loading </p>) || Math.round(avg)}
-                                            </h1>
+                                        </p>
+                                            <p className="title">
+                                                {(loading && <p> loading </p>) || Math.round((avg + Number.EPSILON) * 100) / 100}
+                                            </p>
                                         </div>
                                     </div>
                                     <div className="level-item has-widget-icon">
@@ -215,12 +260,12 @@ function LMBStatsPage() {
                             <div className="card-content">
                                 <div className="level is-mobile">
                                     <div className="level-item">
-                                        <div className="is-widget-label"><h3 className="subtitle is-spaced">
+                                        <div className="is-widget-label"><p className="subtitle is-spaced">
                                             Mínimo
-                                        </h3>
-                                            <h1 className="title">
-                                                {(loading && <p> loading </p>) || min.AB}
-                                            </h1>
+                                        </p>
+                                            <p className="title has-text-danger-dark">
+                                                {(loading && <p> loading </p>) || <p> {min[addrtype]} {min.team} </p>}
+                                            </p>
                                         </div>
                                     </div>
                                     <div className="level-item has-widget-icon">
@@ -237,9 +282,9 @@ function LMBStatsPage() {
             </section>
             <section className="section">
                 <div className="container">
-                    <CustomLineChart width={1200} height={600} data={data} name='turnos al bat'
+                    <CustomLineChart width={1200} height={600} data={data} name={addrtype}
                                      xAxisDataKey='team' type='monotone' gridHexColor='#ccc' legendHeight={36}
-                                     lineDataKey='AB' strokeHexColor='#658354'/>
+                                     lineDataKey={addrtype} strokeHexColor='#658354'/>
                     {/*
                    (loading && <p>Loading</p>) ||
                     <div className="columns is-multiline">
