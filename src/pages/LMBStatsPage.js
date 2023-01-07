@@ -97,7 +97,7 @@ function LMBStatsPage() {
             }
         }
         getData()
-    }, [])
+    }, [addrtype])
 
     const getTopX = (arr, prop) => {
                     let top = {
@@ -218,9 +218,9 @@ function LMBStatsPage() {
                                         <div className="is-widget-label"><p className="subtitle is-spaced">
                                             Máximo
                                         </p>
-                                            <p className="title has-text-success-dark">
-                                                {(loading && <p> loading </p>) ||  <p> {max[addrtype]} {max.team} </p>}
-                                            </p>
+                                            <span className="title has-text-success-dark">
+                                                {(loading && loading) ||  <p> {max[addrtype]} {max.team} </p>}
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="level-item has-widget-icon">
@@ -241,9 +241,9 @@ function LMBStatsPage() {
                                         <div className="is-widget-label"><p className="subtitle is-spaced">
                                             Promedio
                                         </p>
-                                            <p className="title">
-                                                {(loading && <p> loading </p>) || Math.round((avg + Number.EPSILON) * 100) / 100}
-                                            </p>
+                                            <span className="title">
+                                                {(loading && loading) || Math.round((avg + Number.EPSILON) * 100) / 100}
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="level-item has-widget-icon">
@@ -263,9 +263,9 @@ function LMBStatsPage() {
                                         <div className="is-widget-label"><p className="subtitle is-spaced">
                                             Mínimo
                                         </p>
-                                            <p className="title has-text-danger-dark">
-                                                {(loading && <p> loading </p>) || <p> {min[addrtype]} {min.team} </p>}
-                                            </p>
+                                            <span className="title has-text-danger-dark">
+                                                {(loading && loading) || <p> {min[addrtype]} {min.team} </p>}
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="level-item has-widget-icon">
@@ -291,15 +291,7 @@ function LMBStatsPage() {
                         <CustomLineChart width={600} height={300} data={data} name='home runs'
                                          xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
                                          lineDataKey='HR' strokeHexColor='#8884d8'/>
-                        <CustomLineChart width={600} height={300} data={data} name='porcentaje de bateo'
-                                         xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
-                                         lineDataKey='AVG' strokeHexColor='#8884d8'/>
-                        <CustomLineChart width={600} height={300} data={data} name='carreras impulsadas'
-                                         xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
-                                         lineDataKey='RBI' strokeHexColor='#8884d8'/>
-                        <CustomLineChart width={600} height={300} data={data} name='carreras'
-                                         xAxisDataKey='player' type='monotone' gridHexColor='#ccc' legendHeight={36}
-                                         lineDataKey='R' strokeHexColor='#658354'/>
+                     APLICAR LEYENDA DE QUE SIGNIFICA Y LA EXPLICACION DETALLADA DE CADA ESTADISTICA
                     </div>
                    */}
                 </div>
