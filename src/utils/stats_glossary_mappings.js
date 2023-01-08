@@ -1,0 +1,20 @@
+export const statsMapping = {
+  "team": "Equipo",
+  "league": "Liga",
+  "G": "Juegos jugados",
+  "AB": "Turnos al bat",
+  "R": "Carreras",
+  "H": "Hits",
+  "2B": "Dobles",
+  "3B": "Triples",
+  "HR": "Home runs",
+  "RBI": "Carreras impulsadas",
+  "BB": "Bases por bolas",
+  "SO": "Strikeouts",
+  "SB": "Bases robadas",
+  "CS": "Outs robando bases",
+  "AVG": "Porcentaje de bateo",
+  "OBP": "Porcentaje de embasarse",
+  "SLG": "Slugging",
+  "OPS": "Embasado + slugging"
+}
