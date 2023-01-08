@@ -1,5 +1,6 @@
 import CustomLineChart from '../components/Charts/LineChart/CustomLineChart'
 import React, {useState, useEffect} from "react"
+import {statsMapping} from "../utils/stats_glossary_mappings";
 
 
 function LMBStatsPage() {
@@ -68,6 +69,8 @@ function LMBStatsPage() {
     })
     let [data, setData] = useState(null);
     let [loading, setLoading] = useState(true);
+
+
 
     useEffect(() => {
         const getData = async () => {
@@ -282,7 +285,7 @@ function LMBStatsPage() {
             </section>
             <section className="section">
                 <div className="container">
-                    <CustomLineChart width={1200} height={600} data={data} name={addrtype}
+                    <CustomLineChart width={1200} height={600} data={data} name={statsMapping[addrtype]}
                                      xAxisDataKey='team' type='monotone' gridHexColor='#ccc' legendHeight={36}
                                      lineDataKey={addrtype} strokeHexColor='#658354'/>
                     {/*
