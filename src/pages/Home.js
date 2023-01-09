@@ -9,7 +9,6 @@ export const Home = () => {
 
 
     let [data, setData] = useState([]);
-    let [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getData = async () => {
@@ -21,7 +20,6 @@ export const Home = () => {
                 setData(null)
                 console.log(error.message)
             } finally {
-                setLoading(false)
             }
         }
         getData()
