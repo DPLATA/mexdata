@@ -70,6 +70,7 @@ function LMBStatsPage() {
     let [data, setData] = useState(null);
     let [loading, setLoading] = useState(true);
 
+    //sacar getData y envolverlo en usecallback
 
 
     useEffect(() => {
