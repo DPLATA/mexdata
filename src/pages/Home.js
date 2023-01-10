@@ -1,6 +1,7 @@
 import './Home.css'
 import { Link } from 'react-router-dom'
-import {useEffect, useState} from "react";
+import {useEffect, useState} from "react"
+import { FiExternalLink } from "react-icons/fi";
 
 
 
@@ -37,30 +38,61 @@ export const Home = () => {
                 </div>
             </div>
         </nav>
-        <section className=" is-fullheight-with-navbar">
-            {//<div className="hero-body">
-                 }
-                <div className="list">
-                { data.map(header => {
-                        return (<div className="list-item card" key={header.id}>
-                            <div className="card-content" >
-                                <p className="content has-text-weight-semibold" >
-                                    {header.title}
-                                </p>
-                        </div>
-                        </div>)
-                }) }
+
+        <section className="section container">
+            <div className="columns">
+                <div className="column is-3">
+                    <aside className="menu">
+                    </aside>
                 </div>
-            { //</div>
-                }
+                <div className="column is-9">
+                    <div className="box content">
+                        { data.map(header => {
+                        return (<article className="post" key={header.id}>
+                            <p className="has-text-weight-semibold" >{header.title}</p>
+                            <div className="media" >
+                                <div className="media-left">
+                                    <p className="image is-32x32">
+                                        <img alt="news tag avatar" src="https://bulma.io/images/placeholders/128x128.png"/>
+                                    </p>
+                                </div>
+                                <div className="media-content">
+                                    <div className="content">
+                                        <p>
+                                            <span className="tag is-success is-light">LMB</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="media-right">
+                                    <span className="has-text-grey-light"><FiExternalLink/></span>
+                                </div>
+                        </div>
+                        </article>)
+                }) }
+                    </div>
+                </div>
+            </div>
         </section>
-        {/* News aggregator for home screen
+
+
+
+
+
+
+
+
+
+
+
+
+        {/*
+         News aggregator for home screen
             poll f polls section
             presidenciables news section
             poll aggregator
-        */}
 
-        {/*deportes - triatlon - fba
+
+        deportes - triatlon - fba
             Meterle agregador de noticias y estilos para v1
             Meterle seccion de musica y radio
             apartado especial el cuauh por la combinacion perfecta entre deporte y politica
