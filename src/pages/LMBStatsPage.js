@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react"
 import {statsMapping} from "../utils/stats_glossary_mappings"
 import { FcBullish, FcBearish } from "react-icons/fc"
 import { TbMathAvg } from "react-icons/tb";
+import Navigation from "../components/Navigation";
 
 function LMBStatsPage() {
 
@@ -190,6 +191,7 @@ function LMBStatsPage() {
 
     return (
         <>
+            <Navigation/>
             <section className="section">
                 <h1 className="title column is-full"> Estadísticas de bateo por equipo MLB 2022 </h1>
                 <div className="select is-rounded">

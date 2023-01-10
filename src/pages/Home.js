@@ -1,7 +1,7 @@
 import './Home.css'
-import { Link } from 'react-router-dom'
 import {useEffect, useState} from "react"
 import { FiExternalLink } from "react-icons/fi";
+import Navigation from "../components/Navigation";
 
 
 
@@ -10,8 +10,6 @@ export const Home = () => {
 
 
     let [data, setData] = useState([]);
-    let [isActive, setIsActive] = useState(false);
-
 
     useEffect(() => {
         const getData = async () => {
@@ -31,7 +29,7 @@ export const Home = () => {
 
     return (
     <>
-        <nav className="navbar" role="navigation" aria-label="main navigation">
+        {/*<nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" href="https://bulma.io">
                     <img alt="logo" src="https://bulma.io/images/placeholders/128x128.png" width="32" height="32"/>
@@ -55,7 +53,9 @@ export const Home = () => {
                     <a className="navbar-item" href="https://medium.com/moneyball-en-español" target="_blank" rel="noreferrer">Moneyball en español</a>
                 </div>
             </div>
-        </nav>
+        </nav>*/}
+
+        <Navigation/>
 
         <section className="section container">
             <div className="columns">
