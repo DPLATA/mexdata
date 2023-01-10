@@ -1,7 +1,8 @@
 import CustomLineChart from '../components/Charts/LineChart/CustomLineChart'
 import React, {useState, useEffect} from "react"
-import {statsMapping} from "../utils/stats_glossary_mappings";
-
+import {statsMapping} from "../utils/stats_glossary_mappings"
+import { FcBullish, FcBearish } from "react-icons/fc"
+import { TbMathAvg } from "react-icons/tb";
 
 function LMBStatsPage() {
 
@@ -194,7 +195,7 @@ function LMBStatsPage() {
                 <div className="select is-rounded">
                     <select defaultValue={addrtype} onChange={handleAddrTypeChange}>
                         <option defaultValue value="AB">AB</option>
-                        {/*implementar mappeo r:carreras, h:hits y asi sucesivamente y revisar animacion de la grafica*/}
+                        {/*revisar animacion de la grafica*/}
                         <option value="R">R</option>
                         <option value="H">H</option>
                         <option value="2B">2B</option>
@@ -229,8 +230,8 @@ function LMBStatsPage() {
                                     </div>
                                     <div className="level-item has-widget-icon">
                                         <div className="is-widget-icon"><span
-                                            className="icon has-text-primary is-large"><i
-                                            className="mdi mdi-account-multiple mdi-48px"></i></span>
+                                            className="icon has-text-primary is-large">
+                                            <FcBullish className="is-size-1"/></span> {/*revisar si se cambian los iconos de maximo y minimo */}
                                         </div>
                                     </div>
                                 </div>
@@ -245,14 +246,15 @@ function LMBStatsPage() {
                                         <div className="is-widget-label"><p className="subtitle is-spaced">
                                             Promedio
                                         </p>
-                                            <span className="title">
+                                            <span className="title has-text-info">
                                                 {(loading && loading) || Math.round((avg + Number.EPSILON) * 100) / 100}
                                             </span>
                                         </div>
                                     </div>
                                     <div className="level-item has-widget-icon">
-                                        <div className="is-widget-icon"><span className="icon has-text-info is-large"><i
-                                            className="mdi mdi-cart-outline mdi-48px"></i></span>
+                                        <div className="is-widget-icon"><span className="icon has-text-info is-large">
+                                            <TbMathAvg className="is-size-1"/>
+                                        </span>
                                         </div>
                                     </div>
                                 </div>
@@ -274,8 +276,8 @@ function LMBStatsPage() {
                                     </div>
                                     <div className="level-item has-widget-icon">
                                         <div className="is-widget-icon"><span
-                                            className="icon has-text-success is-large"><i
-                                            className="mdi mdi-finance mdi-48px"></i></span>
+                                            className="icon has-text-danger-dark is-large">
+                                            <FcBearish className="is-size-1"/></span>
                                         </div>
                                     </div>
                                 </div>
