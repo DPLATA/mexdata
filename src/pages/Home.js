@@ -1,15 +1,73 @@
 import './Home.css'
 import {useEffect, useState} from "react"
-import { FiExternalLink } from "react-icons/fi";
+import {FiExternalLink} from "react-icons/fi";
 import Navigation from "../components/Navigation";
-
-
+import ReactPaginate from 'react-paginate';
 
 
 export const Home = () => {
 
+    const itemsPerPage = 6
 
     let [data, setData] = useState([]);
+
+
+    const pageCount = Math.ceil(data.length / itemsPerPage);
+    const [itemOffset, setItemOffset] = useState(0);
+
+
+    function Items({currentItems}) {
+        return (
+            <>
+                {currentItems.map(header => {
+                    return (<article className="post" key={header.id}>
+                        <p className="has-text-weight-semibold">{header.title}</p>
+                        <div className="media">
+                            <div className="media-left">
+                                <p className="image is-32x32">
+                                    <img alt="news tag avatar"
+                                         src="https://bulma.io/images/placeholders/128x128.png"/>
+                                </p>
+                            </div>
+                            <div className="media-content">
+                                <div className="content">
+                                    <p>
+                                        <span className="tag is-success is-light">LMB</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="media-right">
+                                <span className="has-text-grey-light"><FiExternalLink/></span>
+                            </div>
+                        </div>
+                    </article>)
+                })}
+            </>
+        );
+    }
+
+
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % data.length;
+        console.log(
+            `User requested page number ${event.selected}, which is offset ${newOffset}`
+        );
+        setItemOffset(newOffset);
+    };
+
+    function PaginatedItems({itemsPerPage}) {
+
+        const endOffset = itemOffset + itemsPerPage;
+        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+        const currentItems = data.slice(itemOffset, endOffset);
+
+        return (
+            <>
+                <Items currentItems={currentItems}/>
+            </>
+        );
+    }
+
 
     useEffect(() => {
         const getData = async () => {
@@ -28,82 +86,39 @@ export const Home = () => {
 
 
     return (
-    <>
-        {/*<nav className="navbar" role="navigation" aria-label="main navigation">
-            <div className="navbar-brand">
-                <a className="navbar-item" href="https://bulma.io">
-                    <img alt="logo" src="https://bulma.io/images/placeholders/128x128.png" width="32" height="32"/>
-                </a>
+        <>
+            <Navigation/>
 
-                <button onClick={() => {
-                    setIsActive(!isActive);
-                }} className={`navbar-burger ${isActive ? "is-active" : ""}`} aria-label="menu" aria-expanded="false"
-                   data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-            <div id="navbarBasicExample"
-                 className={`navbar-menu ${isActive ? "is-active" : ""}`}
-            >
-                <div className="navbar-end">
-                    <Link className="navbar-item" to='/lmbstats'>Estadísticas LMB</Link>
-                    <Link className="navbar-item " to='/map'>Mapa con información del INEGI</Link>
-                    <a className="navbar-item" href="https://medium.com/moneyball-en-español" target="_blank" rel="noreferrer">Moneyball en español</a>
-                </div>
-            </div>
-        </nav>*/}
-
-        <Navigation/>
-
-        <section className="section container">
-            <div className="columns">
-                <div className="column is-3">
-                    <aside className="menu">
-                    </aside>
-                </div>
-                <div className="column is-9">
-                    <div className="box content">
-                        { data.map(header => {
-                        return (<article className="post" key={header.id}>
-                            <p className="has-text-weight-semibold" >{header.title}</p>
-                            <div className="media" >
-                                <div className="media-left">
-                                    <p className="image is-32x32">
-                                        <img alt="news tag avatar" src="https://bulma.io/images/placeholders/128x128.png"/>
-                                    </p>
-                                </div>
-                                <div className="media-content">
-                                    <div className="content">
-                                        <p>
-                                            <span className="tag is-success is-light">LMB</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="media-right">
-                                    <span className="has-text-grey-light"><FiExternalLink/></span>
-                                </div>
-                        </div>
-                        </article>)
-                }) }
+            <section className="section container">
+                <div className="columns">
+                    <div className="column is-3">
+                        <aside className="menu">
+                        </aside>
                     </div>
+                    <div className="column is-9">
+                        <div className="box content">
+                            <PaginatedItems itemsPerPage={itemsPerPage}/>
+                        </div>
+                        <ReactPaginate
+                            // breakLabel="..."
+                            nextLabel="Next"
+                            onPageChange={handlePageClick}
+                            previousClasses={'pagination-previous'}
+                            containerClassName={'pagination'}
+                            // pageRangeDisplayed={5}
+                            pageCount={pageCount}
+                            previousLabel="Previous"
+                            // renderOnZeroPageCount={null}
+                        />
+                    </div>
+
                 </div>
-            </div>
-        </section>
+
+            </section>
+            {/*<PaginatedItems itemsPerPage={2} />*/}
 
 
-
-
-
-
-
-
-
-
-
-
-        {/*
+            {/*
          News aggregator for home screen
             poll f polls section
             presidenciables news section
@@ -119,8 +134,11 @@ export const Home = () => {
             Mapas - CDMX shapefiles info datos abiertos gob cdmx
             MAPAS - cuantos estados son gobernados por hombres y cauntos por mujeres
             Seccion acerca de
+
+            implementar paginacion
+            llenar de datos partes con mapas
         */}
-    </>
-  )
+        </>
+    )
 }
- export default Home
+export default Home
