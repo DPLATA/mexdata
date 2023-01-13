@@ -34,7 +34,7 @@ export const Home = () => {
                             <div className="media-content">
                                 <div className="content">
                                     <p>
-                                        <span className="tag is-success is-light">LMB</span>
+                                        <span className="tag is-success is-light">{header.tag}</span>
                                     </p>
                                 </div>
                             </div>
