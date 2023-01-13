@@ -7,6 +7,8 @@ import ReactPaginate from 'react-paginate';
 
 export const Home = () => {
 
+    //let localhost = true
+
     const itemsPerPage = 6
 
     let [data, setData] = useState([]);
@@ -37,7 +39,7 @@ export const Home = () => {
                                 </div>
                             </div>
                             <div className="media-right">
-                                <span className="has-text-grey-light"><FiExternalLink/></span>
+                                <a href={header.link} target="_blank" rel="noreferrer" className="has-text-grey-light"><FiExternalLink/></a>
                             </div>
                         </div>
                     </article>)
@@ -72,7 +74,8 @@ export const Home = () => {
     useEffect(() => {
         const getData = async () => {
             try {
-                let response = await fetch('https://mexdata-api.onrender.com/lmb/news_headers')
+                // let response = !localhost ? await fetch('https://mexdata-api.onrender.com/lmb/news_complete_headers') : await fetch('http://localhost:8000/lmb/news_complete_headers')
+                let response = await fetch('https://mexdata-api.onrender.com/lmb/news_complete_headers')
                 let actualData = await response.json()
                 setData(actualData.data)
             } catch (error) {
