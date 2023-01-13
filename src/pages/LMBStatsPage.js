@@ -193,7 +193,7 @@ function LMBStatsPage() {
         <>
             <Navigation/>
             <section className="section">
-                <h1 className="title column is-full"> Estadísticas de bateo por equipo MLB 2022 </h1>
+                <h1 className="title column is-full"> Estadísticas de bateo por equipo LMB 2022 </h1>
                 <div className="select is-rounded">
                     <select defaultValue={addrtype} onChange={handleAddrTypeChange}>
                         <option defaultValue value="AB">AB</option>
