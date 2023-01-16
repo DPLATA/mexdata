@@ -104,7 +104,6 @@ export const Map = () => {
 
         <div className='customcontainer'>
             <div className="customheader">
-                {/*incluir mapa politico que partido gobierna que entidad después incluir estadítica*/}
                 <h2 className='customheading title has-text-white'>Tasa de desocupación total trimestral según entidad federativa</h2>
             </div>
             {

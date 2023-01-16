@@ -99,7 +99,6 @@ export const Map = () => {
 
         <div className='customcontainer'>
             <div className="customheader">
-                {/*incluir mapa politico que partido gobierna que entidad después incluir estadítica*/}
                 <h2 className='customheading title has-text-white'>Mapa político: Gobernaturas de México</h2>
             </div>
             {
