@@ -7,7 +7,7 @@ export const Navigation = () => {
 
     return (
     <>
-        <nav className="navbar" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" href="https://bulma.io">
                     <img alt="logo" src="https://bulma.io/images/placeholders/128x128.png" width="32" height="32"/>

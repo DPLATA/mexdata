@@ -3,9 +3,12 @@ import {useEffect, useState} from "react"
 import {FiExternalLink} from "react-icons/fi";
 import Navigation from "../components/Navigation";
 import ReactPaginate from 'react-paginate';
+import lmb from '../assets/imgs/lmb.svg'
+import lfa from '../assets/imgs/lfa.png'
 
 
 export const Home = () => {
+
 
     //let localhost = true
 
@@ -22,27 +25,29 @@ export const Home = () => {
         return (
             <>
                 {currentItems.map(header => {
-                    return (<article className="post" key={header.id}>
-                        <p className="has-text-weight-semibold">{header.title}</p>
-                        <div className="media">
-                            <div className="media-left">
-                                <p className="image is-32x32">
-                                    <img alt="news tag avatar"
-                                         src="https://bulma.io/images/placeholders/128x128.png"/>
-                                </p>
-                            </div>
-                            <div className="media-content">
-                                <div className="content">
-                                    <p>
-                                        <span className="tag is-success is-light">{header.tag}</span>
+                    return (
+                        <article className="post" key={header.id}>
+                            <p className="has-text-weight-semibold">{header.title}</p>
+                            <div className="media">
+                                <div className="media-left">
+                                    <p className="image is-32x32">
+                                        <img alt="news tag avatar"
+                                             src={header.tag === 'LFA' ? lfa : lmb}/>
                                     </p>
                                 </div>
+                                <div className="media-content">
+                                    <div className="content">
+                                        <p>
+                                            <span className="tag is-success is-light">{header.tag}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="media-right">
+                                    <a href={header.link} target="_blank" rel="noreferrer"
+                                       className="has-text-grey-light"><FiExternalLink/></a>
+                                </div>
                             </div>
-                            <div className="media-right">
-                                <a href={header.link} target="_blank" rel="noreferrer" className="has-text-grey-light"><FiExternalLink/></a>
-                            </div>
-                        </div>
-                    </article>)
+                        </article>)
                 })}
             </>
         );
@@ -72,6 +77,8 @@ export const Home = () => {
 
 
     useEffect(() => {
+
+
         const getData = async () => {
             try {
                 // let response = !localhost ? await fetch('https://mexdata-api.onrender.com/lmb/news_complete_headers') : await fetch('http://localhost:8000/lmb/news_complete_headers')

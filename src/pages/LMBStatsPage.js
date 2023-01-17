@@ -4,11 +4,13 @@ import {statsMapping} from "../utils/stats_glossary_mappings"
 import {FcBullish, FcBearish} from "react-icons/fc"
 import {TbMathAvg} from "react-icons/tb";
 import Navigation from "../components/Navigation";
+import lmb from "../assets/imgs/lmb.svg";
 
 function LMBStatsPage() {
 
     let [battingStat, setBattingStat] = useState('AB')
     let [pitchingStat, setPitchingStat] = useState('ERA')
+    let [showBatting, setShowBatting] = useState(true)
 
     let [maxBatting, setMaxBatting] = useState({
         "team": "",
@@ -330,10 +332,19 @@ function LMBStatsPage() {
         console.log(pitchingStat)
     }
 
+    const handleChartChange = (e) => {
+      showBatting ? setShowBatting(false) : setShowBatting(true)
+  };
+
     return (
         <>
             <Navigation/>
-            <section className="section">
+            <p className="button is-danger is-large" onClick={handleChartChange}>{showBatting ? 'pitcheo' : 'bateo'}</p>
+            {
+            (
+                showBatting &&
+                <>
+                <section className="section">
                 <h1 className="title column is-full"> Estadísticas de bateo por equipo LMB 2022 </h1>
                 <div className="select is-rounded">
                     <select defaultValue={battingStat} onChange={handleBattingStatChange}>
@@ -363,9 +374,17 @@ function LMBStatsPage() {
                             <div className="card-content">
                                 <div className="level is-mobile">
                                     <div className="level-item">
-                                        <div className="is-widget-label"><p className="subtitle is-spaced">
-                                            Máximo
-                                        </p>
+                                        <div className="is-widget-icon">
+                                            <p className="image is-32x32">
+                                                <img alt="team avatar" src={lmb}/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="level-item">
+                                        <div className="is-widget-label">
+                                            <p className="subtitle is-spaced">
+                                                Máximo
+                                            </p>
                                             <span className="title has-text-success-dark">
                                                 {(loading && loading) || <p> {maxBatting[battingStat]} {maxBatting.team} </p>}
                                             </span>
@@ -410,6 +429,13 @@ function LMBStatsPage() {
                             <div className="card-content">
                                 <div className="level is-mobile">
                                     <div className="level-item">
+                                        <div className="level-item">
+                                        <div className="is-widget-icon">
+                                            <p className="image is-32x32">
+                                                <img alt="team avatar" src={lmb}/>
+                                            </p>
+                                        </div>
+                                    </div>
                                         <div className="is-widget-label"><p className="subtitle is-spaced">
                                             Mínimo
                                         </p>
@@ -440,8 +466,10 @@ function LMBStatsPage() {
                    */}
                 </div>
             </section>
-
-            {/*pitcheo*/}
+            </>
+            ) || (
+                <>
+                    {/*pitcheo*/}
             <section className="section">
                 <h1 className="title column is-full"> Estadísticas de pitcheo por equipo LMB 2022 </h1>
                 <div className="select is-rounded">
@@ -475,6 +503,13 @@ function LMBStatsPage() {
                         <div className="card tile is-child">
                             <div className="card-content">
                                 <div className="level is-mobile">
+                                    <div className="level-item">
+                                        <div className="is-widget-icon">
+                                            <p className="image is-32x32">
+                                                <img alt="team avatar" src={lmb}/>
+                                            </p>
+                                        </div>
+                                    </div>
                                     <div className="level-item">
                                         <div className="is-widget-label"><p className="subtitle is-spaced">
                                             Máximo
@@ -524,6 +559,13 @@ function LMBStatsPage() {
                             <div className="card-content">
                                 <div className="level is-mobile">
                                     <div className="level-item">
+                                        <div className="is-widget-icon">
+                                            <p className="image is-32x32">
+                                                <img alt="team avatar" src={lmb}/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="level-item">
                                         <div className="is-widget-label"><p className="subtitle is-spaced">
                                             Mínimo
                                         </p>
@@ -554,6 +596,12 @@ function LMBStatsPage() {
                    */}
                 </div>
             </section>
+                </>
+            )
+        }
+
+
+
         </>
     )
 }
