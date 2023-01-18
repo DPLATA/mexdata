@@ -1,6 +1,6 @@
 import CustomLineChart from '../components/Charts/LineChart/CustomLineChart'
 import React, {useState, useEffect} from "react"
-import {statsMapping} from "../utils/stats_glossary_mappings"
+import {pitchingStatsMapping, battingStatsMapping} from "../utils/stats_glossary_mappings"
 import {FcBullish, FcBearish} from "react-icons/fc"
 import {TbMathAvg} from "react-icons/tb";
 import Navigation from "../components/Navigation";
@@ -458,7 +458,7 @@ function LMBStatsPage() {
             </section>
             <section className="section">
                 <div className="container">
-                    <CustomLineChart width={1200} height={600} data={hittingData} name={statsMapping[battingStat]}
+                    <CustomLineChart width={1200} height={600} data={hittingData} name={battingStatsMapping[battingStat]}
                                      xAxisDataKey='team' type='monotone' gridHexColor='#ccc' legendHeight={36}
                                      lineDataKey={battingStat} strokeHexColor='#658354'/>
                     {/*
@@ -588,7 +588,7 @@ function LMBStatsPage() {
             </section>
             <section className="section">
                 <div className="container">
-                    <CustomLineChart width={1200} height={600} data={pitchingData} name={statsMapping[pitchingStat]}
+                    <CustomLineChart width={1200} height={600} data={pitchingData} name={pitchingStatsMapping[pitchingStat]}
                                      xAxisDataKey='team' type='monotone' gridHexColor='#ccc' legendHeight={36}
                                      lineDataKey={pitchingStat} strokeHexColor='#658354'/>
                     {/*
