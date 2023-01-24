@@ -105,7 +105,7 @@ export const Home = () => {
                                 <div className="hero-body">
                                     <div className="container">
                                         <h1 className="title">
-                                            Banner
+                                            Banner hero
                                         </h1>
                                         <h2 className="subtitle">
                                             anuncio
@@ -125,7 +125,7 @@ export const Home = () => {
                                 <div className="hero-body">
                                     <div className="container">
                                         <h1 className="title">
-                                            Banner
+                                            Banner esquina
                                         </h1>
                                         <h2 className="subtitle">
                                             Anuncio
@@ -137,7 +137,7 @@ export const Home = () => {
                                 <div className="tile is-parent">
                                     <article className="tile is-child notification is-success">
                                         <div className="content">
-                                            <p className="title">Banner</p>
+                                            <p className="title">Banner vertical</p>
                                             <p className="subtitle">anuncio</p>
                                             <div className="content">
 
