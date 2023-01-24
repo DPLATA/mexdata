@@ -98,14 +98,57 @@ export const Home = () => {
     return (
         <>
             <Navigation/>
+            <section className="section container">
+                <div className="columns">
+                    <div className="column is-10 is-offset-1">
+                        <section className="hero is-success welcome is-small">
+                                <div className="hero-body">
+                                    <div className="container">
+                                        <h1 className="title">
+                                            Banner
+                                        </h1>
+                                        <h2 className="subtitle">
+                                            anuncio
+                                        </h2>
+                                    </div>
+                                </div>
+                            </section>
+                    </div>
+                </div>
+            </section>
 
             <section className="section container">
                 <div className="columns">
-                    <div className="column is-3">
+                    <div className="column is-2">
                         <aside className="menu">
+                            <section className="hero is-info welcome is-small">
+                                <div className="hero-body">
+                                    <div className="container">
+                                        <h1 className="title">
+                                            Banner
+                                        </h1>
+                                        <h2 className="subtitle">
+                                            Anuncio
+                                        </h2>
+                                    </div>
+                                </div>
+                            </section>
+                            <div className="tile">
+                                <div className="tile is-parent">
+                                    <article className="tile is-child notification is-success">
+                                        <div className="content">
+                                            <p className="title">Banner</p>
+                                            <p className="subtitle">anuncio</p>
+                                            <div className="content">
+
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
                         </aside>
                     </div>
-                    <div className="column is-9">
+                    <div className="column is-10">
                         <div className="box content">
                             <PaginatedItems itemsPerPage={itemsPerPage}/>
                         </div>
