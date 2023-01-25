@@ -5,6 +5,10 @@ import Navigation from "../components/Navigation";
 import ReactPaginate from 'react-paginate';
 import lmb from '../assets/imgs/lmb.svg'
 import lfa from '../assets/imgs/lfa.png'
+import aguamala from '../assets/imgs/aguamala.png'
+import boletomovil from '../assets/imgs/boletomovil.png'
+import pillofon from '../assets/imgs/pillofon.png'
+import ibero from '../assets/imgs/ibero.png'
 
 
 export const Home = () => {
@@ -101,15 +105,20 @@ export const Home = () => {
             <section className="section container">
                 <div className="columns">
                     <div className="column is-10 is-offset-1">
-                        <section className="hero is-success welcome is-small">
+                        <section className="hero is-small">
                                 <div className="hero-body">
                                     <div className="container">
-                                        <h1 className="title">
+                                        <a href="https://boletomovil.com" target="_blank" rel="noreferrer">
+                                        <figure className="image half-banner">
+                                            <img alt="add banner" src={boletomovil}/>
+                                        </figure>
+                                        </a>
+                                        {/*<h1 className="title">
                                             Banner hero
                                         </h1>
                                         <h2 className="subtitle">
                                             anuncio
-                                        </h2>
+                                        </h2>*/}
                                     </div>
                                 </div>
                             </section>
@@ -121,31 +130,57 @@ export const Home = () => {
                 <div className="columns">
                     <div className="column is-2">
                         <aside className="menu">
-                            <section className="hero is-info welcome is-small">
+                            <section className="hero welcome is-small">
                                 <div className="hero-body">
                                     <div className="container">
-                                        <h1 className="title">
+                                        <a href="https://ibero909.fm" target="_blank" rel="noreferrer">
+                                        <figure className="image is-128x128">
+                                            <img alt="add banner" src={ibero}/>
+                                        </figure>
+                                        </a>
+                                        {/*<h1 className="title">
                                             Banner esquina
                                         </h1>
                                         <h2 className="subtitle">
                                             Anuncio
-                                        </h2>
+                                        </h2>*/}
                                     </div>
                                 </div>
                             </section>
-                            <div className="tile">
-                                <div className="tile is-parent">
-                                    <article className="tile is-child notification is-success">
-                                        <div className="content">
-                                            <p className="title">Banner vertical</p>
-                                            <p className="subtitle">anuncio</p>
-                                            <div className="content">
-
-                                            </div>
-                                        </div>
-                                    </article>
+                            <section className="hero welcome is-small">
+                                <div className="hero-body">
+                                    <div className="container">
+                                        <a href="http://aguamala.com.mx" target="_blank" rel="noreferrer">
+                                        <figure className="image is-128x128">
+                                            <img alt="add banner" src={aguamala}/>
+                                        </figure>
+                                        </a>
+                                        {/*<h1 className="title">
+                                            Banner esquina
+                                        </h1>
+                                        <h2 className="subtitle">
+                                            Anuncio
+                                        </h2>*/}
+                                    </div>
                                 </div>
-                            </div>
+                            </section>
+                            <section className="hero welcome is-small">
+                                <div className="hero-body">
+                                    <div className="container">
+                                        <a href="https://pillofon.mx" target="_blank" rel="noreferrer">
+                                        <figure className="image is-128x128">
+                                            <img alt="add banner" src={pillofon}/>
+                                        </figure>
+                                        </a>
+                                        {/*<h1 className="title">
+                                            Banner esquina
+                                        </h1>
+                                        <h2 className="subtitle">
+                                            Anuncio
+                                        </h2>*/}
+                                    </div>
+                                </div>
+                            </section>
                         </aside>
                     </div>
                     <div className="column is-10">
