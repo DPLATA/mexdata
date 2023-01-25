@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation";
 import ReactPaginate from 'react-paginate';
 import lmb from '../assets/imgs/lmb.svg'
 import lfa from '../assets/imgs/lfa.png'
+import gleague from '../assets/imgs/gleague.png'
 
 
 export const Home = () => {
@@ -32,7 +33,7 @@ export const Home = () => {
                                 <div className="media-left">
                                     <p className="image is-32x32">
                                         <img alt="news tag avatar"
-                                             src={header.tag === 'LFA' ? lfa : lmb}/>
+                                             src={header.tag === 'LFA' ? lfa : header.tag === 'LMB' ? lmb : gleague }/>
                                     </p>
                                 </div>
                                 <div className="media-content">
@@ -111,13 +112,13 @@ export const Home = () => {
                         </div>
                         <ReactPaginate
                             // breakLabel="..."
-                            nextLabel="Next"
+                            nextLabel="Siguiente"
                             onPageChange={handlePageClick}
                             previousClasses={'pagination-previous'}
                             containerClassName={'pagination'}
                             // pageRangeDisplayed={5}
                             pageCount={pageCount}
-                            previousLabel="Previous"
+                            previousLabel="Anterior"
                             // renderOnZeroPageCount={null}
                         />
                     </div>
