@@ -5,7 +5,10 @@ import Navigation from "../components/Navigation";
 import ReactPaginate from 'react-paginate';
 import lmb from '../assets/imgs/lmb.svg'
 import lfa from '../assets/imgs/lfa.png'
-import gleague from '../assets/imgs/gleague.png'
+import aguamala from '../assets/imgs/aguamala.png'
+import boletomovil from '../assets/imgs/boletomovil.png'
+import pillofon from '../assets/imgs/pillofon.png'
+import ibero from '../assets/imgs/ibero.png'
 
 
 export const Home = () => {
@@ -33,7 +36,7 @@ export const Home = () => {
                                 <div className="media-left">
                                     <p className="image is-32x32">
                                         <img alt="news tag avatar"
-                                             src={header.tag === 'LFA' ? lfa : header.tag === 'LMB' ? lmb : gleague }/>
+                                             src={header.tag === 'LFA' ? lfa : lmb}/>
                                     </p>
                                 </div>
                                 <div className="media-content">
@@ -99,26 +102,100 @@ export const Home = () => {
     return (
         <>
             <Navigation/>
+            <section className="section container">
+                <div className="columns">
+                    <div className="column is-10 is-offset-1">
+                        <section className="hero is-small">
+                                <div className="hero-body">
+                                    <div className="container">
+                                        <a href="https://boletomovil.com" target="_blank" rel="noreferrer">
+                                        <figure className="image half-banner">
+                                            <img alt="add banner" src={boletomovil}/>
+                                        </figure>
+                                        </a>
+                                        {/*<h1 className="title">
+                                            Banner hero
+                                        </h1>
+                                        <h2 className="subtitle">
+                                            anuncio
+                                        </h2>*/}
+                                    </div>
+                                </div>
+                            </section>
+                    </div>
+                </div>
+            </section>
 
             <section className="section container">
                 <div className="columns">
-                    <div className="column is-3">
+                    <div className="column is-2">
                         <aside className="menu">
+                            <section className="hero welcome is-small">
+                                <div className="hero-body">
+                                    <div className="container">
+                                        <a href="https://ibero909.fm" target="_blank" rel="noreferrer">
+                                        <figure className="image is-128x128">
+                                            <img alt="add banner" src={ibero}/>
+                                        </figure>
+                                        </a>
+                                        {/*<h1 className="title">
+                                            Banner esquina
+                                        </h1>
+                                        <h2 className="subtitle">
+                                            Anuncio
+                                        </h2>*/}
+                                    </div>
+                                </div>
+                            </section>
+                            <section className="hero welcome is-small">
+                                <div className="hero-body">
+                                    <div className="container">
+                                        <a href="http://aguamala.com.mx" target="_blank" rel="noreferrer">
+                                        <figure className="image is-128x128">
+                                            <img alt="add banner" src={aguamala}/>
+                                        </figure>
+                                        </a>
+                                        {/*<h1 className="title">
+                                            Banner esquina
+                                        </h1>
+                                        <h2 className="subtitle">
+                                            Anuncio
+                                        </h2>*/}
+                                    </div>
+                                </div>
+                            </section>
+                            <section className="hero welcome is-small">
+                                <div className="hero-body">
+                                    <div className="container">
+                                        <a href="https://pillofon.mx" target="_blank" rel="noreferrer">
+                                        <figure className="image is-128x128">
+                                            <img alt="add banner" src={pillofon}/>
+                                        </figure>
+                                        </a>
+                                        {/*<h1 className="title">
+                                            Banner esquina
+                                        </h1>
+                                        <h2 className="subtitle">
+                                            Anuncio
+                                        </h2>*/}
+                                    </div>
+                                </div>
+                            </section>
                         </aside>
                     </div>
-                    <div className="column is-9">
+                    <div className="column is-10">
                         <div className="box content">
                             <PaginatedItems itemsPerPage={itemsPerPage}/>
                         </div>
                         <ReactPaginate
                             // breakLabel="..."
-                            nextLabel="Siguiente"
+                            nextLabel="Next"
                             onPageChange={handlePageClick}
                             previousClasses={'pagination-previous'}
                             containerClassName={'pagination'}
                             // pageRangeDisplayed={5}
                             pageCount={pageCount}
-                            previousLabel="Anterior"
+                            previousLabel="Previous"
                             // renderOnZeroPageCount={null}
                         />
                     </div>
