@@ -9,7 +9,7 @@ export const Navigation = () => {
     <>
         <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item" href="https://bulma.io">
+                <a className="navbar-item" href="https://relaxed-zuccutto-a8320d.netlify.app">
                     <img alt="logo" src="https://bulma.io/images/placeholders/128x128.png" width="32" height="32"/>
                 </a>
 
