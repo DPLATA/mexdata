@@ -33,7 +33,7 @@ export const Navigation = () => {
                     <Link className="navbar-item " to='/political_map'>Mapa político de México</Link>
                     {/* CDMX standalone map <Link className="navbar-item " to='/map'>Mapa con información del INEGI</Link>*/}
                     {/*Galeria de mapas demograficos rendereados con r<Link className="navbar-item " to='/map'>Mapa con información del INEGI</Link>*/}
-                    <a className="navbar-item" href="https://medium.com/moneyball-en-español" target="_blank" rel="noreferrer">Moneyball en español</a>
+                    <a className="navbar-item" href="https://moneyball.eldatomx.com" target="_blank" rel="noreferrer">Moneyball en español</a>
                 </div>
             </div>
         </nav>
