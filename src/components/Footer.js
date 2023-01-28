@@ -34,11 +34,6 @@ export const Footer = () => {
                                 <FiTwitter className="is-size-1"/>
                             </span>
                         </a>
-                        {/*<a className="mr-4 is-inline-block" href="https://google.com">
-                            <span className="icon is-large">
-                                <FiYoutube className="is-size-1"/>
-                            </span>
-                        </a>*/}
                     </div>
                 </div>
             </div>
