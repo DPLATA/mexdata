@@ -2,6 +2,7 @@ import './Home.css'
 import {useEffect, useState} from "react"
 import {FiExternalLink} from "react-icons/fi";
 import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 import ReactPaginate from 'react-paginate';
 import lmb from '../assets/imgs/lmb.svg'
 import lfa from '../assets/imgs/lfa.png'
@@ -204,6 +205,7 @@ export const Home = () => {
                 </div>
 
             </section>
+
             {/*<PaginatedItems itemsPerPage={2} />*/}
 
 
@@ -227,6 +229,7 @@ export const Home = () => {
             implementar paginacion
             llenar de datos partes con mapas
         */}
+            <Footer/>
         </>
     )
 }

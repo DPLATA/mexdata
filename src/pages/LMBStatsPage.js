@@ -5,6 +5,7 @@ import {FcBullish, FcBearish} from "react-icons/fc"
 import {TbMathAvg} from "react-icons/tb";
 import Navigation from "../components/Navigation";
 import lmb from "../assets/imgs/lmb.svg";
+import Footer from "../components/Footer";
 
 function LMBStatsPage() {
 
@@ -601,7 +602,7 @@ function LMBStatsPage() {
         }
 
 
-
+                    <Footer/>
         </>
     )
 }
