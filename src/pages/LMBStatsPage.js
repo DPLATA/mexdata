@@ -116,11 +116,11 @@ function LMBStatsPage() {
     useEffect(() => {
         const getData = async () => {
             try {
-                let response = await fetch('https://mexdata-api.onrender.com/lmb/teams_hitting')
+                let response = await fetch(`${process.env.REACT_APP_BASE_URL}/lmb/teams_hitting`)
                 let actualData = await response.json()
                 setHittingData(actualData.data)
 
-                let response2 = await fetch('https://mexdata-api.onrender.com/lmb/teams_pitching')
+                let response2 = await fetch(`${process.env.REACT_APP_BASE_URL}/lmb/teams_pitching`)
                 let actualData2 = await response2.json()
                 setPitchingData(actualData2.data)
 

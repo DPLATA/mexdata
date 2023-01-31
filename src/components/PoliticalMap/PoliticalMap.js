@@ -15,7 +15,7 @@ export const Map = () => {
     useEffect(() => {
         const getData = async () => {
             try {
-                let response = await fetch('https://mexdata-api.onrender.com/mex_map/feature_collections')
+                let response = await fetch(`${process.env.REACT_APP_BASE_URL}/mex_map/feature_collections`)
                 let actualData = await response.json()
                 setMx_states({...mx_states, features: actualData.data})
                 setError(null)
