@@ -10,7 +10,10 @@ import aguamala from '../assets/imgs/aguamala.png'
 import boletomovil from '../assets/imgs/boletomovil.png'
 import pillofon from '../assets/imgs/pillofon.png'
 import ibero from '../assets/imgs/ibero.png'
-import gleague from '../assets/imgs/gleague.png'
+// import gleague from '../assets/imgs/gleague.png'
+import lamp from '../assets/imgs/lamp.png'
+import capitanes from '../assets/imgs/capitanes.png'
+import lnbp from '../assets/imgs/lnbp.png'
 
 
 
@@ -39,7 +42,7 @@ export const Home = () => {
                                 <div className="media-left">
                                     <p className="image is-32x32">
                                         <img alt="news tag avatar"
-                                             src={header.tag === 'LFA' ? lfa : header.tag === 'LMB' ? lmb : gleague }/>
+                                             src={header.tag === 'LFA' ? lfa : header.tag === 'LMB' ? lmb : header.tag === 'LNBP' ? lnbp : header.tag === 'LAMP' ? lamp : header.tag === 'LNBP' ? lnbp : capitanes }/>
                                     </p>
                                 </div>
                                 <div className="media-content">
