@@ -92,7 +92,7 @@ export const Home = () => {
         const getData = async () => {
             try {
                 // let response = !localhost ? await fetch('https://mexdata-api.onrender.com/lmb/news_complete_headers') : await fetch('http://localhost:8000/lmb/news_complete_headers')
-                let response = await fetch(`${process.env.REACT_APP_BASE_URL}/lmb/news_complete_headers`)
+                let response = await fetch(`${process.env.REACT_APP_BASE_URL}/news/sports`)
                 let actualData = await response.json()
                 setData(actualData.data)
             } catch (error) {
