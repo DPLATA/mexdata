@@ -1,219 +1,236 @@
 import './Home.css'
-import {useEffect, useState} from "react"
-import {FiExternalLink} from "react-icons/fi";
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
-import ReactPaginate from 'react-paginate';
-import lmb from '../assets/imgs/lmb.svg'
-import lfa from '../assets/imgs/lfa.png'
+import { useEffect, useState } from 'react'
+import { FiExternalLink } from 'react-icons/fi'
+import Navigation from '../components/Navigation'
+import Footer from '../components/Footer'
+import ReactPaginate from 'react-paginate'
 import aguamala from '../assets/imgs/aguamala.png'
 import boletomovil from '../assets/imgs/boletomovil.png'
 import pillofon from '../assets/imgs/pillofon.png'
 import ibero from '../assets/imgs/ibero.png'
 // import gleague from '../assets/imgs/gleague.png'
-import lamp from '../assets/imgs/lamp.png'
 import capitanes from '../assets/imgs/capitanes.png'
-import lnbp from '../assets/imgs/lnbp.png'
-
-
+import { useParams } from 'react-router-dom'
+import { routeParamsMap } from '../helpers/paramsMapping'
+import { imageMapping } from '../helpers/imageMapping'
 
 export const Home = () => {
+	//let localhost = true
 
+	const { subject } = useParams()
+	const itemsPerPage = 6
 
-    //let localhost = true
+	let [data, setData] = useState([])
 
-    const itemsPerPage = 6
+	const pageCount = Math.ceil(data.length / itemsPerPage)
+	const [itemOffset, setItemOffset] = useState(0)
 
-    let [data, setData] = useState([]);
+	function Items({ currentItems }) {
+		return (
+			<>
+				{currentItems.map((header) => {
+					const { tag } = header
+					return (
+						<article className="post" key={header.id}>
+							<p className="has-text-weight-semibold">{header.title}</p>
+							<div className="media">
+								<div className="media-left">
+									<p className="image is-32x32">
+										<img
+											alt="news tag avatar"
+											src={imageMapping[tag] ?? capitanes}
+										/>
+									</p>
+								</div>
+								<div className="media-content">
+									<div className="content">
+										<p>
+											<span className="tag is-success is-light">
+												{header.tag}
+											</span>
+										</p>
+									</div>
+								</div>
+								<div className="media-right">
+									<a
+										href={header.link}
+										target="_blank"
+										rel="noreferrer"
+										className="has-text-grey-light"
+									>
+										<FiExternalLink />
+									</a>
+								</div>
+							</div>
+						</article>
+					)
+				})}
+			</>
+		)
+	}
 
+	const handlePageClick = (event) => {
+		const newOffset = (event.selected * itemsPerPage) % data.length
+		console.log(
+			`User requested page number ${event.selected}, which is offset ${newOffset}`
+		)
+		setItemOffset(newOffset)
+	}
 
-    const pageCount = Math.ceil(data.length / itemsPerPage);
-    const [itemOffset, setItemOffset] = useState(0);
+	function PaginatedItems({ itemsPerPage }) {
+		const endOffset = itemOffset + itemsPerPage
+		console.log(`Loading items from ${itemOffset} to ${endOffset}`)
+		const currentItems = data.slice(itemOffset, endOffset)
 
+		return (
+			<>
+				<Items currentItems={currentItems} />
+			</>
+		)
+	}
 
-    function Items({currentItems}) {
-        return (
-            <>
-                {currentItems.map(header => {
-                    return (
-                        <article className="post" key={header.id}>
-                            <p className="has-text-weight-semibold">{header.title}</p>
-                            <div className="media">
-                                <div className="media-left">
-                                    <p className="image is-32x32">
-                                        <img alt="news tag avatar"
-                                             src={header.tag === 'LFA' ? lfa : header.tag === 'LMB' ? lmb : header.tag === 'LNBP' ? lnbp : header.tag === 'LAMP' ? lamp : header.tag === 'LNBP' ? lnbp : capitanes }/>
-                                    </p>
-                                </div>
-                                <div className="media-content">
-                                    <div className="content">
-                                        <p>
-                                            <span className="tag is-success is-light">{header.tag}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="media-right">
-                                    <a href={header.link} target="_blank" rel="noreferrer"
-                                       className="has-text-grey-light"><FiExternalLink/></a>
-                                </div>
-                            </div>
-                        </article>)
-                })}
-            </>
-        );
-    }
+	useEffect(() => {
+		const getData = async () => {
+			try {
+				// let response = !localhost ? await fetch('https://mexdata-api.onrender.com/lmb/news_complete_headers') : await fetch('http://localhost:8000/lmb/news_complete_headers')
+				let response = await fetch(
+					`${process.env.REACT_APP_BASE_URL}/news/${
+						subject ? routeParamsMap[subject] : 'sports'
+					}`
+				)
+				let actualData = await response.json()
+				setData(actualData.data)
+			} catch (error) {
+				setData(null)
+				console.log(error.message)
+			} finally {
+			}
+		}
+		getData()
+	}, [subject])
 
-
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % data.length;
-        console.log(
-            `User requested page number ${event.selected}, which is offset ${newOffset}`
-        );
-        setItemOffset(newOffset);
-    };
-
-    function PaginatedItems({itemsPerPage}) {
-
-        const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-        const currentItems = data.slice(itemOffset, endOffset);
-
-        return (
-            <>
-                <Items currentItems={currentItems}/>
-            </>
-        );
-    }
-
-
-    useEffect(() => {
-
-
-        const getData = async () => {
-            try {
-                // let response = !localhost ? await fetch('https://mexdata-api.onrender.com/lmb/news_complete_headers') : await fetch('http://localhost:8000/lmb/news_complete_headers')
-                let response = await fetch(`${process.env.REACT_APP_BASE_URL}/news/sports`)
-                let actualData = await response.json()
-                setData(actualData.data)
-            } catch (error) {
-                setData(null)
-                console.log(error.message)
-            } finally {
-            }
-        }
-        getData()
-    }, [])
-
-
-    return (
-        <>
-            <Navigation/>
-            <section className="section container">
-                <div className="columns">
-                    <div className="column is-10 is-offset-1">
-                        <section className="hero is-small">
-                                <div className="hero-body">
-                                    <div className="container">
-                                        <a href="https://boletomovil.com" target="_blank" rel="noreferrer">
-                                        <figure className="image half-banner">
-                                            <img alt="add banner" src={boletomovil}/>
-                                        </figure>
-                                        </a>
-                                        {/*<h1 className="title">
+	return (
+		<>
+			<Navigation />
+			<section className="section container">
+				<div className="columns">
+					<div className="column is-10 is-offset-1">
+						<section className="hero is-small">
+							<div className="hero-body">
+								<div className="container">
+									<a
+										href="https://boletomovil.com"
+										target="_blank"
+										rel="noreferrer"
+									>
+										<figure className="image half-banner">
+											<img alt="add banner" src={boletomovil} />
+										</figure>
+									</a>
+									{/*<h1 className="title">
                                             Banner hero
                                         </h1>
                                         <h2 className="subtitle">
                                             anuncio
                                         </h2>*/}
-                                    </div>
-                                </div>
-                            </section>
-                    </div>
-                </div>
-            </section>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</section>
 
-            <section className="section container">
-                <div className="columns">
-                    <div className="column is-2">
-                        <aside className="menu">
-                            <section className="hero welcome is-small">
-                                <div className="hero-body">
-                                    <div className="container">
-                                        <a href="https://ibero909.fm" target="_blank" rel="noreferrer">
-                                        <figure className="image is-128x128">
-                                            <img alt="add banner" src={ibero}/>
-                                        </figure>
-                                        </a>
-                                        {/*<h1 className="title">
+			<section className="section container">
+				<div className="columns">
+					<div className="column is-2">
+						<aside className="menu">
+							<section className="hero welcome is-small">
+								<div className="hero-body">
+									<div className="container">
+										<a
+											href="https://ibero909.fm"
+											target="_blank"
+											rel="noreferrer"
+										>
+											<figure className="image is-128x128">
+												<img alt="add banner" src={ibero} />
+											</figure>
+										</a>
+										{/*<h1 className="title">
                                             Banner esquina
                                         </h1>
                                         <h2 className="subtitle">
                                             Anuncio
                                         </h2>*/}
-                                    </div>
-                                </div>
-                            </section>
-                            <section className="hero welcome is-small">
-                                <div className="hero-body">
-                                    <div className="container">
-                                        <a href="http://aguamala.com.mx" target="_blank" rel="noreferrer">
-                                        <figure className="image is-128x128">
-                                            <img alt="add banner" src={aguamala}/>
-                                        </figure>
-                                        </a>
-                                        {/*<h1 className="title">
+									</div>
+								</div>
+							</section>
+							<section className="hero welcome is-small">
+								<div className="hero-body">
+									<div className="container">
+										<a
+											href="http://aguamala.com.mx"
+											target="_blank"
+											rel="noreferrer"
+										>
+											<figure className="image is-128x128">
+												<img alt="add banner" src={aguamala} />
+											</figure>
+										</a>
+										{/*<h1 className="title">
                                             Banner esquina
                                         </h1>
                                         <h2 className="subtitle">
                                             Anuncio
                                         </h2>*/}
-                                    </div>
-                                </div>
-                            </section>
-                            <section className="hero welcome is-small">
-                                <div className="hero-body">
-                                    <div className="container">
-                                        <a href="https://pillofon.mx" target="_blank" rel="noreferrer">
-                                        <figure className="image is-128x128">
-                                            <img alt="add banner" src={pillofon}/>
-                                        </figure>
-                                        </a>
-                                        {/*<h1 className="title">
+									</div>
+								</div>
+							</section>
+							<section className="hero welcome is-small">
+								<div className="hero-body">
+									<div className="container">
+										<a
+											href="https://pillofon.mx"
+											target="_blank"
+											rel="noreferrer"
+										>
+											<figure className="image is-128x128">
+												<img alt="add banner" src={pillofon} />
+											</figure>
+										</a>
+										{/*<h1 className="title">
                                             Banner esquina
                                         </h1>
                                         <h2 className="subtitle">
                                             Anuncio
                                         </h2>*/}
-                                    </div>
-                                </div>
-                            </section>
-                        </aside>
-                    </div>
-                    <div className="column is-10">
-                        <div className="box content">
-                            <PaginatedItems itemsPerPage={itemsPerPage}/>
-                        </div>
-                        <ReactPaginate
-                            // breakLabel="..."
-                            nextLabel="Next"
-                            onPageChange={handlePageClick}
-                            previousClasses={'pagination-previous'}
-                            containerClassName={'pagination'}
-                            // pageRangeDisplayed={5}
-                            pageCount={pageCount}
-                            previousLabel="Previous"
-                            // renderOnZeroPageCount={null}
-                        />
-                    </div>
+									</div>
+								</div>
+							</section>
+						</aside>
+					</div>
+					<div className="column is-10">
+						<div className="box content">
+							<PaginatedItems itemsPerPage={itemsPerPage} />
+						</div>
+						<ReactPaginate
+							// breakLabel="..."
+							nextLabel="Next"
+							onPageChange={handlePageClick}
+							previousClasses={'pagination-previous'}
+							containerClassName={'pagination'}
+							// pageRangeDisplayed={5}
+							pageCount={pageCount}
+							previousLabel="Previous"
+							// renderOnZeroPageCount={null}
+						/>
+					</div>
+				</div>
+			</section>
 
-                </div>
+			{/*<PaginatedItems itemsPerPage={2} />*/}
 
-            </section>
-
-            {/*<PaginatedItems itemsPerPage={2} />*/}
-
-
-            {/*
+			{/*
          News aggregator for home screen
             poll f polls section
             presidenciables news section
@@ -233,8 +250,8 @@ export const Home = () => {
             implementar paginacion
             llenar de datos partes con mapas
         */}
-            <Footer/>
-        </>
-    )
+			<Footer />
+		</>
+	)
 }
 export default Home
