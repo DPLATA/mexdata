@@ -1,18 +1,13 @@
-import Map from "../components/PoliticalMap/PoliticalMap";
-import Legend from "../components/PoliticalMapLegend/PoliticalMapLegend";
-import Navigation from "../components/Navigation";
-import React from "react";
-import Footer from "../components/Footer";
+import React from 'react'
+import Map from '../components/PoliticalMap/PoliticalMap'
+import Legend from '../components/PoliticalMapLegend/PoliticalMapLegend'
 
 export const MapInfo = () => {
-    return (
-    <>
-        <Navigation/>
-        <Map/>
-        <Legend/>
-                    <Footer/>
-
-    </>
-  )
+	return (
+		<>
+			<Map />
+			<Legend />
+		</>
+	)
 }
- export default MapInfo
+export default MapInfo

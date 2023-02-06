@@ -1,8 +1,6 @@
 import './Home.css'
 import { useEffect, useState } from 'react'
 import { FiExternalLink } from 'react-icons/fi'
-import Navigation from '../components/Navigation'
-import Footer from '../components/Footer'
 import ReactPaginate from 'react-paginate'
 import aguamala from '../assets/imgs/aguamala.png'
 import boletomovil from '../assets/imgs/boletomovil.png'
@@ -111,7 +109,6 @@ export const Home = () => {
 
 	return (
 		<>
-			<Navigation />
 			<section className="section container">
 				<div className="columns">
 					<div className="column is-10 is-offset-1">
@@ -250,7 +247,6 @@ export const Home = () => {
             implementar paginacion
             llenar de datos partes con mapas
         */}
-			<Footer />
 		</>
 	)
 }

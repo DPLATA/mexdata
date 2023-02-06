@@ -1,18 +1,13 @@
-import Map from "../components/Map/Map";
-import Legend from "../components/Legend/Legend";
-import Navigation from "../components/Navigation";
-import React from "react";
-import Footer from "../components/Footer";
+import Map from '../components/Map/Map'
+import Legend from '../components/Legend/Legend'
+import React from 'react'
 
 export const MapInfo = () => {
-    return (
-    <>
-        <Navigation/>
-        <Map/>
-        <Legend/>
-                    <Footer/>
-
-    </>
-  )
+	return (
+		<>
+			<Map />
+			<Legend />
+		</>
+	)
 }
- export default MapInfo
+export default MapInfo
