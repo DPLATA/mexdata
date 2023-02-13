@@ -1,8 +1,4 @@
-body{
-    /*background:rgb(88, 87, 87);
-    background: #F2F6FA;*/
 
-}
 .media-left img {
   border-radius: 50%;
 }
@@ -20,4 +16,22 @@ article.post {
 article.post:last-child {
   padding-bottom: 0;
   border-bottom: none;
+}
+
+.hero {
+  font-weight: bold
+}
+
+.has-background {
+  position: relative;
+  overflow: hidden
+}
+
+.background {
+  position: absolute;
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
 }

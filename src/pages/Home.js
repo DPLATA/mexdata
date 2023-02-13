@@ -1,21 +1,23 @@
 import './Home.css'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FiExternalLink } from 'react-icons/fi'
 import ReactPaginate from 'react-paginate'
+import HeroImage from '../assets/imgs/hero-banner.jpeg'
 import aguamala from '../assets/imgs/aguamala.png'
-import boletomovil from '../assets/imgs/boletomovil.png'
+//import boletomovil from '../assets/imgs/boletomovil.png'
 import pillofon from '../assets/imgs/pillofon.png'
 import ibero from '../assets/imgs/ibero.png'
 // import gleague from '../assets/imgs/gleague.png'
 import capitanes from '../assets/imgs/capitanes.png'
 import { useParams } from 'react-router-dom'
-import { routeParamsMap } from '../helpers/paramsMapping'
+import { routeParamsMap, routesData } from '../helpers/paramsMapping'
 import { imageMapping } from '../helpers/imageMapping'
 
 export const Home = () => {
 	//let localhost = true
 
-	const { subject } = useParams()
+	const { subject = 'deportes' } = useParams()
 	const itemsPerPage = 6
 
 	let [data, setData] = useState([])
@@ -80,11 +82,7 @@ export const Home = () => {
 		console.log(`Loading items from ${itemOffset} to ${endOffset}`)
 		const currentItems = data.slice(itemOffset, endOffset)
 
-		return (
-			<>
-				<Items currentItems={currentItems} />
-			</>
-		)
+		return <Items currentItems={currentItems} />
 	}
 
 	useEffect(() => {
@@ -101,7 +99,6 @@ export const Home = () => {
 			} catch (error) {
 				setData(null)
 				console.log(error.message)
-			} finally {
 			}
 		}
 		getData()
@@ -109,31 +106,37 @@ export const Home = () => {
 
 	return (
 		<>
+			<section className="hero is-large is-link has-background">
+				<img src={HeroImage} alt="banner" className="hero background" />
+				<div className="hero-body">
+					<p className="title">EL DATO MX</p>
+				</div>
+				<div className="hero-foot">
+					<nav className="tabs is-boxed is-fullwidth">
+						<div className="container">
+							<ul>
+								{routesData.map((route) => {
+									const { route: routeName } = route
+
+									return (
+										<li
+											key={routeName}
+											className={subject === routeName ? 'is-active' : ''}
+										>
+											<Link to={`/${routeName}`}>
+												{routeName.charAt(0).toUpperCase() + routeName.slice(1)}
+											</Link>
+										</li>
+									)
+								})}
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</section>
 			<section className="section container">
 				<div className="columns">
-					<div className="column is-10 is-offset-1">
-						<section className="hero is-small">
-							<div className="hero-body">
-								<div className="container">
-									<a
-										href="https://boletomovil.com"
-										target="_blank"
-										rel="noreferrer"
-									>
-										<figure className="image half-banner">
-											<img alt="add banner" src={boletomovil} />
-										</figure>
-									</a>
-									{/*<h1 className="title">
-                                            Banner hero
-                                        </h1>
-                                        <h2 className="subtitle">
-                                            anuncio
-                                        </h2>*/}
-								</div>
-							</div>
-						</section>
-					</div>
+					<div className="column is-10 is-offset-1"></div>
 				</div>
 			</section>
 
