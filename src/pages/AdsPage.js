@@ -1,5 +1,6 @@
 import React from 'react'
-import phonefull from '../assets/imgs/phone-full.svg'
+// import phonefull from '../assets/imgs/phone-full.svg'
+import eldatologoazul from '../assets/imgs/eldatomx_azul.png'
 import { BsWhatsapp } from 'react-icons/bs'
 
 export const AdsPage = () => {
@@ -10,7 +11,7 @@ export const AdsPage = () => {
 					<div className="mb-6 pb-3 columns is-multiline">
 						<div className="column is-12 is-6-desktop mx-auto has-text-centered">
 							<h2 className="mb-4 is-size-1 is-size-3-mobile has-text-weight-bold">
-								Anúnciate con El dato MX
+								Anúnciate con nosotros
 							</h2>
 							<p className="subtitle has-text-grey mb-5">
 								Ayudamos a las marcas a hacer un impacto en México.
@@ -18,7 +19,7 @@ export const AdsPage = () => {
 							<div className="column is-12 is-block-desktop is-hidden-touch">
 								<img
 									className="mx-auto mt-0-widescreen is-block image"
-									src={phonefull}
+									src={eldatologoazul}
 									alt=""
 								/>
 							</div>
@@ -30,7 +31,7 @@ export const AdsPage = () => {
 				<div className="container">
 					<div className="is-vcentered columns is-multiline">
 						<div className="column is-6 is-5-desktop mb-4">
-							<span className="has-text-light">Lorem ipsum</span>
+							<span className="has-text-light">Contacto</span>
 							<h3 className="has-text-light mt-2 mb-3 is-size-3 is-size-3-mobile has-text-weight-bold">
 								Para más información comunícate con nosotros:
 							</h3>

@@ -1,6 +1,9 @@
+import '../App.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FiTwitter } from 'react-icons/fi'
+import eldatologonegro from '../assets/imgs/eldatomx_negro.png'
+import eldatologoblanco from '../assets/imgs/eldatomx_blanco.png'
 
 export const Layout = ({ children }) => {
 	let [isActive, setIsActive] = useState(false)
@@ -17,8 +20,8 @@ export const Layout = ({ children }) => {
 						<a className="navbar-item" href="https://eldatomx.com">
 							<img
 								alt="logo"
-								src="https://bulma.io/images/placeholders/128x128.png"
-								width="32"
+								src={eldatologoblanco}
+								width="256"
 								height="32"
 							/>
 						</a>
@@ -93,10 +96,10 @@ export const Layout = ({ children }) => {
 						<div className="mr-auto mb-2">
 							<a className="is-inline-block" href="https://eldatomx.com">
 								<img
-									className="image is-32x32"
-									src="https://bulma.io/images/placeholders/32x32.png"
+									className="image"
+									src={eldatologonegro}
 									alt="logo"
-									width="32px"
+									width="256px"
 								/>
 							</a>
 						</div>
