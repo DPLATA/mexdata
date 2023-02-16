@@ -1,4 +1,4 @@
-import './App.css'
+import './fonts/RockwellRegular/rockwell.ttf'
 import MapInfo from './pages/MapInfo'
 import Home from './pages/Home'
 import LMBStatsPage from './pages/LMBStatsPage'
@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom'
 import AdsPage from './pages/AdsPage'
 import 'bulma/css/bulma.css'
 import Layout from './components/Layout'
+import './App.sass';
 
 function App() {
 	return (
