@@ -13,6 +13,7 @@ import capitanes from '../assets/imgs/capitanes.png'
 import { useParams } from 'react-router-dom'
 import { routeParamsMap, routesData } from '../helpers/paramsMapping'
 import { imageMapping } from '../helpers/imageMapping'
+import eldatologoamarillo from "../assets/imgs/eldatomx_amarillo.png";
 
 export const Home = () => {
 	//let localhost = true
@@ -106,10 +107,12 @@ export const Home = () => {
 
 	return (
 		<>
-			<section className="hero is-large is-link has-background">
+			<section className="hero is-large has-background">
 				<img src={HeroImage} alt="banner" className="hero background" />
 				<div className="hero-body">
-					<p className="title">EL DATO MX</p>
+							<figure className="image">
+												<img alt="add banner" src={eldatologoamarillo} />
+											</figure>
 				</div>
 				<div className="hero-foot">
 					<nav className="tabs is-boxed is-fullwidth">

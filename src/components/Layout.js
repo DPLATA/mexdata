@@ -1,4 +1,3 @@
-import '../App.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FiTwitter } from 'react-icons/fi'
@@ -21,7 +20,7 @@ export const Layout = ({ children }) => {
 							<img
 								alt="logo"
 								src={eldatologoblanco}
-								width="256"
+								width="150"
 								height="32"
 							/>
 						</a>
