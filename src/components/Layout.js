@@ -89,7 +89,7 @@ export const Layout = ({ children }) => {
 				</nav>
 			</header>
 			<main>{children}</main>
-			<div id="container-a3ebf2d077d04f3829cad3634cf92e4f"></div>
+			{/*<div id="container-a3ebf2d077d04f3829cad3634cf92e4f"></div>*/}
 			<footer className="section footer">
 				<div className="container">
 					<div className="pb-5 is-flex is-flex-wrap-wrap is-justify-content-between is-align-items-center">
