@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { FiTwitter } from 'react-icons/fi'
 import eldatologonegro from '../assets/imgs/eldatomx_negro.png'
 import eldatologoblanco from '../assets/imgs/eldatomx_blanco.png'
+import Ads from './Ads/Ads';
 
 export const Layout = ({ children }) => {
 	let [isActive, setIsActive] = useState(false)
@@ -89,6 +90,9 @@ export const Layout = ({ children }) => {
 				</nav>
 			</header>
 			<main>{children}</main>
+			<div className="container">
+				<Ads dataAdSlot='1444663249288111' />
+			</div>
 			<footer className="section footer">
 				<div className="container">
 					<div className="pb-5 is-flex is-flex-wrap-wrap is-justify-content-between is-align-items-center">
